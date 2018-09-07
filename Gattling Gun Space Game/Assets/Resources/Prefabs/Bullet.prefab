@@ -90,8 +90,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 500
-  maxBounces: 99
+  maxBounces: 4
   bulletDamage: 1
+  maxVelocity: 100
 --- !u!212 &212404566784472884
 SpriteRenderer:
   m_ObjectHideFlags: 1

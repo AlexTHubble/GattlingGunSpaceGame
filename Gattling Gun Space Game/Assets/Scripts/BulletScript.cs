@@ -54,11 +54,12 @@ public class BulletScript : MonoBehaviour {
         }
     }
 
+    //Checks current velocity of the bullet, if it's higher than the max it slow it down
     void checkMaxVelocity()
     {
-        if(bulletRidgedBody.velocity[1] > maxVelocity)
+        if(bulletRidgedBody.velocity[1] != maxVelocity)
         {
-
+            //bulletRidgedBody.velocity = new Vector2(0f, maxVelocity);
         }
     }
 }
