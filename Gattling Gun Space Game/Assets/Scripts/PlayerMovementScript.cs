@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovementScript : MonoBehaviour {
+public class PlayerMovementScript : MonoBehaviour
+{
     [Header("Player Movment")]
     public int dashPower = 0; //Movment speed of the player
     public float rotationSpeed = 0f;
@@ -17,14 +18,14 @@ public class PlayerMovementScript : MonoBehaviour {
     float currentCooldown = 0f;
     bool cooldownInitiated = false;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
         playerRidgedBody = gameObject.GetComponent<Rigidbody2D>(); //Gets the ridgedbody componant on start
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    }
+
+    // Update is called once per frame
+    void Update()
     {
         GetAimDirection();
         PlayerRotation();
@@ -43,10 +44,10 @@ public class PlayerMovementScript : MonoBehaviour {
     //NOTE: Requires PS4 controller to be plugged in for functionality
     void Dash()
     {
-        //If the X key is pressed dash the player
-        if(Input.GetButton("Dash") && !cooldownInitiated) 
+        //If the L2 key is pressed dash the player
+        if (Input.GetButton("Dash") && !cooldownInitiated)
         {
-            if(currentDashs < maxDashes)
+            if (currentDashs < maxDashes)
             {
                 Vector3 movment = new Vector3(xDir, yDir, 0f); //Vector with the movment direction
                 playerRidgedBody.AddForce(movment * dashPower); //Adds the force to the player
@@ -57,7 +58,7 @@ public class PlayerMovementScript : MonoBehaviour {
             }
         }
 
-        if(cooldownInitiated && currentCooldown <= Time.time)
+        if (cooldownInitiated && currentCooldown <= Time.time)
         {
             cooldownInitiated = false;
         }
@@ -67,15 +68,10 @@ public class PlayerMovementScript : MonoBehaviour {
     //NOTE: Requires PS4 controller to be plugged in for functionality
     void PlayerRotation()
     {
-        if(Input.GetButton("L2")) //If the player is holding down the L2 button rotate left
-        {
-            playerRidgedBody.transform.Rotate(0, 0, rotationSpeed);
-        }
-        else if (Input.GetButton("R2")) //If the player is holding down the R2 button rotate right
-        {
-            playerRidgedBody.transform.Rotate(0, 0, (rotationSpeed * -1f));
-        }
+        //Debug.Log("Vertical axis: " + Input.GetAxis("Vertical"));
+        //Debug.Log("Horizontal axis: " + Input.GetAxis("Horizontal"));
 
-
+        if ((Input.GetAxis("Vertical") != 0f && Input.GetAxis("Horizontal") != 0f))
+            gameObject.transform.eulerAngles = new Vector3(0, 0, (Mathf.Atan2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal")) * 180 / Mathf.PI) - 90);
     }
 }
