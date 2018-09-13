@@ -26,7 +26,7 @@ public class BulletScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        checkMaxVelocity();
+        CheckMaxVelocity();
 	}
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -55,7 +55,7 @@ public class BulletScript : MonoBehaviour {
     }
 
     //Checks current velocity of the bullet, if it's higher than the max it slow it down
-    void checkMaxVelocity()
+    void CheckMaxVelocity()
     {
         if(bulletRidgedBody.velocity[1] != maxVelocity)
         {

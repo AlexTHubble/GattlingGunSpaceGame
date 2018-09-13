@@ -63,17 +63,13 @@ public class PlayerMovementScript : MonoBehaviour {
         }
     }
 
-    //Rotates the player based on L2 and R2 inputs
+    //Rotates the player based on horizontal and vertical axis
     //NOTE: Requires PS4 controller to be plugged in for functionality
     void PlayerRotation()
     {
-        if(Input.GetButton("L2")) //If the player is holding down the L2 button rotate left
+        if((Input.GetAxis("Vertical") != 0f && Input.GetAxis("Horizontal") != 0f))
         {
-            playerRidgedBody.transform.Rotate(0, 0, rotationSpeed);
-        }
-        else if (Input.GetButton("R2")) //If the player is holding down the R2 button rotate right
-        {
-            playerRidgedBody.transform.Rotate(0, 0, (rotationSpeed * -1f));
+            gameObject.transform.eulerAngles = new Vector3(0, 0, (Mathf.Atan2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal")) * 180 / Mathf.PI) - 90);
         }
 
 
