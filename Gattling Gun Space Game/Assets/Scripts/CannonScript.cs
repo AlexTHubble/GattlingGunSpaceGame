@@ -5,9 +5,6 @@ using UnityEngine;
 public class CannonScript : MonoBehaviour {
 
     GameObject bulletPrefab = null;
-    public float shootDelay = 0f;
-    bool delayInititated = false;
-    float currentDelay = 0f;
 
 	// Use this for initialization
 	void Start ()
@@ -23,17 +20,10 @@ public class CannonScript : MonoBehaviour {
 
     void shootBullet()
     {
-        if(Input.GetButton("Fire") && !delayInititated)
+        if(Input.GetButton("Fire"))
         {
             Debug.Log("Player shoot");
             Instantiate(bulletPrefab, gameObject.transform);
-            delayInititated = true;
-            currentDelay = Time.time + shootDelay;
-        }
-
-        if(delayInititated && currentDelay <= Time.time)
-        {
-            delayInititated = false;
         }
 
     }
