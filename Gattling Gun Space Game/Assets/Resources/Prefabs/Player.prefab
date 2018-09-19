@@ -39,9 +39,10 @@ GameObject:
   - component: {fileID: 50904533186815810}
   - component: {fileID: 58730670631903906}
   - component: {fileID: 114836820435672202}
+  - component: {fileID: 114109344962405006}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Player
+  m_TagString: P1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,7 +201,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1062683407696670}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.075292, y: -1.1301476, z: 0}
+  m_LocalPosition: {x: -6.02, y: -1.1301476, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4782083927111516}
@@ -287,6 +288,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootDelay: 0.02
+--- !u!114 &114109344962405006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1062683407696670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2634d500029639b47a409f95190d2d3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashPower: 0
+  rotationSpeed: 0
+  maxDashes: 0
+  dashCooldown: 0
 --- !u!114 &114836820435672202
 MonoBehaviour:
   m_ObjectHideFlags: 1
