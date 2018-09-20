@@ -9,6 +9,7 @@ public class CannonScript : MonoBehaviour {
     public float shootDelay = 0f;
     bool delayInititated = false;
     float currentDelay = 0f;
+    bool shooting = false;
 
     List<GameObject> spawnPoints = new List<GameObject>();
     int currentSpawnPoint = 0;
@@ -31,7 +32,17 @@ public class CannonScript : MonoBehaviour {
 
     void ShootBullet()
     {
-        if (player.GetButtonSinglePressHold("ShootGun"))
+        if (player.GetButtonDown("ShootGun"))
+        {
+            shooting = true;
+        }
+        if (player.GetButtonUp("ShootGun"))
+        {
+            shooting = false;
+        }
+
+
+        if (shooting)
             if (!delayInititated)
             {
                 Instantiate(bulletPrefab, spawnPoints[currentSpawnPoint].gameObject.transform.position, spawnPoints[currentSpawnPoint].gameObject.transform.rotation);
