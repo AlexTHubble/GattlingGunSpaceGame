@@ -39,7 +39,6 @@ GameObject:
   - component: {fileID: 50904533186815810}
   - component: {fileID: 58730670631903906}
   - component: {fileID: 114836820435672202}
-  - component: {fileID: 114109344962405006}
   m_Layer: 8
   m_Name: Player
   m_TagString: P1
@@ -122,9 +121,10 @@ GameObject:
   - component: {fileID: 4123737984658412}
   - component: {fileID: 212366275958696842}
   - component: {fileID: 58844568549252128}
+  - component: {fileID: 114820708581547382}
   m_Layer: 0
   m_Name: WeakSpot
-  m_TagString: Untagged
+  m_TagString: P1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,7 +136,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1981344870498686}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.8, z: 0}
+  m_LocalPosition: {x: 0, y: -0.401, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 4762421500147992}
@@ -201,7 +201,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1062683407696670}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.02, y: -1.1301476, z: 0}
+  m_LocalPosition: {x: -13.97, y: -0.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4782083927111516}
@@ -270,7 +270,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -288,21 +288,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootDelay: 0.02
---- !u!114 &114109344962405006
+--- !u!114 &114820708581547382
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1062683407696670}
+  m_GameObject: {fileID: 1981344870498686}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2634d500029639b47a409f95190d2d3f, type: 3}
+  m_Script: {fileID: 11500000, guid: bbfbea5911cc27944b4d7123e3b12622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashPower: 0
-  rotationSpeed: 0
-  maxDashes: 0
-  dashCooldown: 0
+  bulletDamage: 1
 --- !u!114 &114836820435672202
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -446,7 +443,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0ba3700792ff0465c8a006dd4b301b42, type: 3}
-  m_Color: {r: 0.07586192, g: 1, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.13172174, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

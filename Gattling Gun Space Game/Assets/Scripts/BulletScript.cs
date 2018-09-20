@@ -7,7 +7,6 @@ public class BulletScript : MonoBehaviour {
     [Header("Bullet properties")]
     public int bulletSpeed = 0;
     public int maxBounces = 0;
-    public int bulletDamage = 0;
     public float maxVelocity = 0;
 
     int bounceCount = 0;

@@ -105,9 +105,10 @@ GameObject:
   - component: {fileID: 4557299361181854}
   - component: {fileID: 212856320819738246}
   - component: {fileID: 58988247876034558}
+  - component: {fileID: 114144164529053276}
   m_Layer: 0
   m_Name: WeakSpot
-  m_TagString: Untagged
+  m_TagString: P2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -204,7 +205,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1630296476827854}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.8, z: 0}
+  m_LocalPosition: {x: 0, y: -0.401, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 4726572717590532}
@@ -217,7 +218,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1032078296714688}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.92, y: -1.1301476, z: 0}
+  m_LocalPosition: {x: 13.82, y: -0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4177102617219442}
@@ -269,12 +270,24 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &114144164529053276
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1630296476827854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbfbea5911cc27944b4d7123e3b12622, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletDamage: 1
 --- !u!114 &114186145462855810
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -301,7 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d8f7a48832beb4fabd99a5cf0fd7ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootDelay: 0.2
+  shootDelay: 0.02
 --- !u!212 &212271676671075978
 SpriteRenderer:
   m_ObjectHideFlags: 1

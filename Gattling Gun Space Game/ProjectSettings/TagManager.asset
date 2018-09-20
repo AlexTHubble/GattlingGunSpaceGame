@@ -8,6 +8,8 @@ TagManager:
   - KillZone
   - P1
   - P2
+  - P1Bullet
+  - P2Bullet
   layers:
   - Default
   - TransparentFX

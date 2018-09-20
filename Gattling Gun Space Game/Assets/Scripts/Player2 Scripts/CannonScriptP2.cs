@@ -33,8 +33,6 @@ public class CannonScriptP2 : MonoBehaviour {
         if (player.GetButtonSinglePressHold("ShootGun"))
             if (!delayInititated)
             {
-                Debug.Log("Player2 shoot");
-                Debug.Log("Current spawnpoint: " + currentSpawnPoint);
                 Instantiate(bulletPrefab, spawnPoints[currentSpawnPoint].gameObject.transform.position, spawnPoints[currentSpawnPoint].gameObject.transform.rotation);
                 delayInititated = true;
                 currentDelay = Time.time + shootDelay;
