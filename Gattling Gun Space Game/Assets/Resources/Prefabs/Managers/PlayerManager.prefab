@@ -53,3 +53,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1Hp: 5
   player2Hp: 5
+  godPeriod: 0.2

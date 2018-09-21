@@ -9,55 +9,45 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1757821713078892}
+  m_RootGameObject: {fileID: 1272697340500072}
   m_IsPrefabAsset: 1
---- !u!1 &1757821713078892
+--- !u!1 &1272697340500072
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4437508138712640}
-  - component: {fileID: 114566735298105032}
+  - component: {fileID: 4165652651709408}
+  - component: {fileID: 114702936629583028}
   m_Layer: 0
-  m_Name: SceneManager
+  m_Name: SceneSetupManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4437508138712640
+--- !u!4 &4165652651709408
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1757821713078892}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.398615, y: 5.6313467, z: 0.4934494}
+  m_GameObject: {fileID: 1272697340500072}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114566735298105032
+--- !u!114 &114702936629583028
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1757821713078892}
+  m_GameObject: {fileID: 1272697340500072}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e055754f8fa0434f9cf78c2eb6d3a8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 7379b9d164aa893418ecc1d8a5ffceb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelNames:
-  - Test Scene
-  - Level 1
-  - Level 2
-  - Level 3
-  - Level 4
-  menuSceneNames:
-  - P1Wins
-  - P2Wins
-  scoreToWin: 5

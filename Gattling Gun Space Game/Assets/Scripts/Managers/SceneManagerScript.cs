@@ -17,7 +17,12 @@ namespace Managers
 
         int p1Score = 0;
         int p2Score = 0;
+        bool gameOver = false;
 
+        private void OnLevelWasLoaded(int level)
+        {
+            gameOver = false;
+        }
 
         // Use this for initialization
         void Start()
@@ -32,21 +37,25 @@ namespace Managers
 
         public void nextLevel(bool p1Victorious, bool p2Victorious, bool p1SelfHit, bool p2SelfHit)
         {
-            if (p1Victorious)
+            if (p1Victorious && gameOver == false)
             {
                 p1Score++;
+                gameOver = true;
             }
-            if (p1SelfHit)
+            if (p1SelfHit && gameOver == false)
             {
                 p1Score--;
+                gameOver = true;
             }
-            if (p2Victorious)
+            if (p2Victorious && gameOver == false)
             {
                 p2Score++;
+                gameOver = true;
             }
-            if (p2SelfHit)
+            if (p2SelfHit && gameOver == false)
             {
                 p2Score--;
+                gameOver = true;
             }
 
             Debug.Log("Current score: " + p1Score + " - " + p2Score);
@@ -58,13 +67,13 @@ namespace Managers
                 SceneManager.LoadScene(levelNames[nextLevelId]);
             }
 
-            if (p1Score < scoreToWin)
+            if (p1Score >= scoreToWin)
             {
-
+                SceneManager.LoadScene(menuSceneNames[0]);
             }
-            else if (p2Score < scoreToWin)
+            else if (p2Score >= scoreToWin)
             {
-
+                SceneManager.LoadScene(menuSceneNames[1]);
             }
         }
 
