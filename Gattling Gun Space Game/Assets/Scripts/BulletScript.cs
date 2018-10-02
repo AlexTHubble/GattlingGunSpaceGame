@@ -5,9 +5,12 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour {
 
     [Header("Bullet properties")]
-    public int bulletSpeed = 0;
-    public int maxBounces = 0;
-    public float maxVelocity = 0;
+    [SerializeField]
+    int bulletSpeed = 0;
+    [SerializeField]
+    int maxBounces = 0;
+    [SerializeField]
+    float maxVelocity = 0;
 
     int bounceCount = 0;
     Rigidbody2D bulletRidgedBody;
@@ -16,6 +19,7 @@ public class BulletScript : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        maxBounces = Managers.LevelSetupScript.Instance.getBulletBounces();
         gameObject.transform.parent = null;
         //Vector3 dir = new Vector3(0f, 0f, 0f);
         bulletRidgedBody = gameObject.GetComponent<Rigidbody2D>(); //Gets the ridged body of the bullet
@@ -37,8 +41,21 @@ public class BulletScript : MonoBehaviour {
             if (bounceCount > maxBounces)
                 Destroy(gameObject);
         }
+        if (collision.gameObject.tag == "P1")
+        {
+            bounceCount++;
 
-        if(collision.gameObject.tag == "Player")
+            if (bounceCount > maxBounces)
+                Destroy(gameObject);
+        }
+        if (collision.gameObject.tag == "P2")
+        {
+            bounceCount++;
+
+            if (bounceCount > maxBounces)
+                Destroy(gameObject);
+        }
+        if (collision.gameObject.tag == "Player")
         {
             Debug.Log("Player Hit");
             Destroy(gameObject);

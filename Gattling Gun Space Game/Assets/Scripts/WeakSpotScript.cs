@@ -5,7 +5,8 @@ using UnityEngine;
 public class WeakSpotScript : MonoBehaviour {
 
     GameObject playerConnectedTo = null;
-    public int bulletDamage = 1;
+    [SerializeField]
+    int bulletDamage = 1;
 
 	// Use this for initialization
 	void Start ()

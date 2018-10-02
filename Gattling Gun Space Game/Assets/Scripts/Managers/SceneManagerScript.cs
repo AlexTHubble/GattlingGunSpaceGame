@@ -9,11 +9,15 @@ namespace Managers
     {
 
         [Header("Level names")]
-        public List<string> levelNames = new List<string>();
-        public List<string> menuSceneNames = new List<string>();
+
+        [SerializeField]
+        List<string> levelNames = new List<string>();
+        [SerializeField]
+        List<string> menuSceneNames = new List<string>();
 
         [Header("Global game variables")]
-        public int scoreToWin = 5;
+        [SerializeField]
+        int scoreToWin = 5;
 
         int p1Score = 0;
         int p2Score = 0;

@@ -6,9 +6,10 @@ namespace Managers
 {
     public class PlayerManager : Singleton<PlayerManager>
     {
-        public int player1Hp = 10;
-        public int player2Hp = 10;
-        public float godPeriod = 0.2f;
+        int player1Hp = 10;
+        int player2Hp = 10;
+        [SerializeField]
+        float godPeriod = 0.2f;
 
         bool p1GodEnabled = false;
         bool p2GodEnabled = false;
@@ -17,6 +18,9 @@ namespace Managers
 
         private void Start()
         {
+            player1Hp = Managers.LevelSetupScript.Instance.getPlayerHP();
+            player2Hp = Managers.LevelSetupScript.Instance.getPlayerHP();
+            Debug.Log("Player 1 health set to: " + player1Hp + " || Player 2 health set to: " + player2Hp);
             Managers.UiManager.Instance.updateP1Hp(player1Hp);
             Managers.UiManager.Instance.updateP2Hp(player2Hp);
         }
