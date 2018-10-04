@@ -2,21 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace Managers
 {
     public class UiManager : Singleton<UiManager>
     {
-        Text p1Health;
-        Text p2Health;
+        TextMeshPro p1Health;
+        TextMeshPro p2Health;
         Text score;
 
         // Use this for initialization
         void Start()
         {
-
-            p1Health = GameObject.Find("p1Hp Text").GetComponent<Text>();
-            p2Health = GameObject.Find("p2Hp Text").GetComponent<Text>();
+            p1Health = GameObject.Find("P1HP TMP").GetComponent<TextMeshPro>();
+            p2Health = GameObject.Find("P2HP TMP").GetComponent<TextMeshPro>();
+            //p1Health = GameObject.Find("p1Hp Text").GetComponent<Text>();
+            //p2Health = GameObject.Find("p2Hp Text").GetComponent<Text>();
             score = GameObject.Find("Score Text").GetComponent<Text>();
         }
 
@@ -24,19 +26,19 @@ namespace Managers
         {
             if(p1Health == null)
             {
-                p1Health = GameObject.Find("p1Hp Text").GetComponent<Text>();
+                p1Health = GameObject.Find("P1HP TMP").GetComponent<TextMeshPro>();
             }
-            p1Health.text = "P1 Hp: " + hp.ToString();
+            p1Health.text = hp.ToString();
         }
 
         public void updateP2Hp(int hp)
         {
             if(p2Health == null)
             {
-                p2Health = GameObject.Find("p2Hp Text").GetComponent<Text>();
+                p2Health = GameObject.Find("P2HP TMP").GetComponent<TextMeshPro>();
             }
 
-            p2Health.text = "P2 Hp: " + hp.ToString();
+            p2Health.text = hp.ToString();
         }
 
         public void updateScore(int p1Score, int p2Score)
