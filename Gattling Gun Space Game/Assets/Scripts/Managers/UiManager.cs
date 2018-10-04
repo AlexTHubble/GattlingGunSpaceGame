@@ -12,9 +12,15 @@ namespace Managers
         TextMeshPro p2Health;
         Text score;
 
+        Slider p1Ammo;
+        Slider p2Ammo;
+
         // Use this for initialization
         void Start()
         {
+            p1Ammo = GameObject.Find("ReloadBar P1").GetComponent<Slider>();
+            p2Ammo = GameObject.Find("ReloadBar P2").GetComponent<Slider>();
+
             p1Health = GameObject.Find("P1HP TMP").GetComponent<TextMeshPro>();
             p2Health = GameObject.Find("P2HP TMP").GetComponent<TextMeshPro>();
             //p1Health = GameObject.Find("p1Hp Text").GetComponent<Text>();
@@ -66,6 +72,39 @@ namespace Managers
             }
 
             
+        }
+
+        //Updates the ammo bar
+        public void updateAmmoBar(string player, int ammo)
+        {
+            if(player == "P1")
+            {
+                p1Ammo.value = ammo;
+            }
+
+            if(player == "P2")
+            {
+                p2Ammo.value = ammo;
+            }
+        }
+
+        public void setUpAmmoBar(string player, int maxAmmo)
+        {
+            if(p1Ammo == null || p2Ammo == null)
+            {
+                p1Ammo = GameObject.Find("ReloadBar P1").GetComponent<Slider>();
+                p2Ammo = GameObject.Find("ReloadBar P2").GetComponent<Slider>();
+            }
+
+            if (player == "P1")
+            {
+                p1Ammo.maxValue = maxAmmo;
+            }
+
+            if (player == "P2")
+            {
+                p2Ammo.maxValue = maxAmmo;
+            }
         }
     }
 }

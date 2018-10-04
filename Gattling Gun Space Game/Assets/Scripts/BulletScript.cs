@@ -45,14 +45,14 @@ public class BulletScript : MonoBehaviour {
         {
             bounceCount++;
 
-            if (bounceCount > maxBounces)
+            //if (bounceCount > maxBounces)
                 Destroy(gameObject);
         }
         if (collision.gameObject.tag == "P2")
         {
             bounceCount++;
 
-            if (bounceCount > maxBounces)
+            //if (bounceCount > maxBounces)
                 Destroy(gameObject);
         }
         if (collision.gameObject.tag == "Player")

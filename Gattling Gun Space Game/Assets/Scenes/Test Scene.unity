@@ -912,10 +912,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 1062683407696670, guid: 962f69ef8cdc81f49b1b07722a98137c, type: 2}
-      propertyPath: m_Name
-      value: Player 1
-      objectReference: {fileID: 0}
     - target: {fileID: 33108618914618052, guid: 962f69ef8cdc81f49b1b07722a98137c,
         type: 2}
       propertyPath: m_Mesh
@@ -1658,7 +1654,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1861654877
 RectTransform:
   m_ObjectHideFlags: 0

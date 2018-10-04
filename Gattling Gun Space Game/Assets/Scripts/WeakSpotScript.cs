@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class WeakSpotScript : MonoBehaviour {
 
-    GameObject playerConnectedTo = null;
+    //GameObject playerConnectedTo = null;
+
     [SerializeField]
     int bulletDamage = 1;
 
 	// Use this for initialization
 	void Start ()
     {
-        if(gameObject.tag == "P1")
-        {
-            playerConnectedTo = GameObject.Find("Player");
-        }
-        if (gameObject.tag == "P2")
-        {
-            playerConnectedTo = GameObject.Find("Player 2");
-        }
+        //if(gameObject.tag == "P1")
+        //{
+        //    playerConnectedTo = GameObject.Find("Player");
+        //}
+        //if (gameObject.tag == "P2")
+        //{
+        //    playerConnectedTo = GameObject.Find("Player 2");
+        //}
     }
 	
 	// Update is called once per frame

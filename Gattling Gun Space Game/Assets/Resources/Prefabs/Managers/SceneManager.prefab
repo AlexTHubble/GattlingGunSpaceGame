@@ -60,4 +60,4 @@ MonoBehaviour:
   menuSceneNames:
   - P1Wins
   - P2Wins
-  scoreToWin: 5
+  scoreToWin: 3

@@ -11,6 +11,19 @@ public class CannonScript : MonoBehaviour {
     float currentDelay = 0f;
     bool shooting = false;
 
+    [SerializeField]
+    int clipSize = 100;
+
+    int currentClip = 0;
+
+    [SerializeField]
+    float reloadTime = 1f;
+
+    bool reloading = false;
+    float currentReloadTime = 0f;
+
+    
+
     List<GameObject> spawnPoints = new List<GameObject>();
     int currentSpawnPoint = 0;
     Player player;
@@ -18,7 +31,12 @@ public class CannonScript : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        currentClip = clipSize;
+        Managers.UiManager.Instance.setUpAmmoBar(gameObject.tag, clipSize);
+
         shootDelay = Managers.LevelSetupScript.Instance.getShootDelay();
+
+        //Sets up stuff based on what player the cannon is tagged to
         switch (tag)
         {
             case "P1":
@@ -44,13 +62,16 @@ public class CannonScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        handleReloading();
         ShootBullet();
-	}
+    }
 
 
     void ShootBullet()
     {
-        if (player.GetButtonDown("ShootGun"))
+        
+        //Tests for shooting gun
+        if (player.GetButtonDown("ShootGun") && reloading == false)
         {
             shooting = true;
         }
@@ -63,10 +84,18 @@ public class CannonScript : MonoBehaviour {
         if (shooting)
             if (!delayInititated)
             {
+                //Spawns bullet and reduces clip count
                 Instantiate(bulletPrefab, spawnPoints[currentSpawnPoint].gameObject.transform.position, spawnPoints[currentSpawnPoint].gameObject.transform.rotation);
+                currentClip--;
+
+                //Update's UI
+                Managers.UiManager.Instance.updateAmmoBar(gameObject.tag, currentClip);
+
+                //Sets up delay
                 delayInititated = true;
                 currentDelay = Time.time + shootDelay;
 
+                //Sets up next spawnpoint
                 currentSpawnPoint++;
                 if (currentSpawnPoint > spawnPoints.Count - 1)
                 {
@@ -87,5 +116,47 @@ public class CannonScript : MonoBehaviour {
         spawnPoints.Add(gameObject.transform.Find("BulletSpawn2").gameObject);
         spawnPoints.Add(gameObject.transform.Find("BulletSpawn3").gameObject);
         spawnPoints.Add(gameObject.transform.Find("BulletSpawn4").gameObject);
+    }
+
+    void handleReloading()
+    {
+        if(currentClip <= 0 && reloading == false)
+        {
+            //Debug.Log("RELOADING");
+            shooting = false;
+            reloading = true;
+
+            currentReloadTime = Time.time + reloadTime;
+        }
+
+        if(player.GetButtonDown("Reload"))
+        {
+            shooting = false;
+            reloading = true;
+
+            currentReloadTime = Time.time + reloadTime;
+        }
+
+        if(reloading && currentReloadTime <= Time.time)
+        {
+            //Debug.Log("Done Reloading");
+            reload();
+            
+        }
+    }
+
+    void reload() //Reloads the weapon
+    {
+        currentClip = clipSize;
+        Managers.UiManager.Instance.updateAmmoBar(gameObject.tag, currentClip);
+        reloading = false;
+
+        ////While loop used for ammo bar animation effect
+        //while (currentClip <= clipSize)
+        //{
+        //    currentClip++;
+        //    Managers.UiManager.Instance.updateAmmoBar(gameObject.tag, currentClip);
+        //    reloading = false;
+        //}
     }
 }

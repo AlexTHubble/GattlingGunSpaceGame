@@ -19,6 +19,9 @@ namespace Managers
         [SerializeField]
         int scoreToWin = 5;
 
+        [SerializeField]
+        int scoreToLose = -3;
+
         int p1Score = 0;
         int p2Score = 0;
         bool gameOver = false;
@@ -71,6 +74,7 @@ namespace Managers
                 SceneManager.LoadScene(levelNames[nextLevelId]);
             }
 
+            //Handles a player winning the game (possitive points)
             if (p1Score >= scoreToWin)
             {
                 SceneManager.LoadScene(menuSceneNames[0]);
@@ -78,6 +82,16 @@ namespace Managers
             else if (p2Score >= scoreToWin)
             {
                 SceneManager.LoadScene(menuSceneNames[1]);
+            }
+
+            //Handles a player losing the game (negative points)
+            if (p1Score <= scoreToLose)
+            {
+                SceneManager.LoadScene(menuSceneNames[1]);
+            }
+            else if (p2Score <= scoreToLose)
+            {
+                SceneManager.LoadScene(menuSceneNames[0]);
             }
         }
 
