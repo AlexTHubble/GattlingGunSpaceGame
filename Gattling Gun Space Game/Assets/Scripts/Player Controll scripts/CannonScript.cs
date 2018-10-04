@@ -70,6 +70,11 @@ public class CannonScript : MonoBehaviour {
     void ShootBullet()
     {
         
+        if(player.GetButtonSinglePressHold("ShootGun") && reloading == false)
+        {
+            shooting = true;
+        }
+
         //Tests for shooting gun
         if (player.GetButtonDown("ShootGun") && reloading == false)
         {

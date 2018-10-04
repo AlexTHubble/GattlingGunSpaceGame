@@ -452,7 +452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clipSize: 25
-  reloadTime: 2
+  reloadTime: 1
 --- !u!114 &114327159388296538
 MonoBehaviour:
   m_ObjectHideFlags: 1
