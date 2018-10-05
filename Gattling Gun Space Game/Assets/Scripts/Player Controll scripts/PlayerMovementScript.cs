@@ -53,9 +53,12 @@ public class PlayerMovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetAimDirection();
-        PlayerRotation();
-        Dash();
+        if(!Managers.PlayerManager.Instance.testForLockedControlls())
+        {
+            GetAimDirection();
+            PlayerRotation();
+            Dash();
+        }
         //Debug.Log("Time.time" + Time.time);
     }
 

@@ -22,6 +22,7 @@ public class CannonScript : MonoBehaviour {
     bool reloading = false;
     float currentReloadTime = 0f;
 
+    //bool controllsLocked = false;
     
 
     List<GameObject> spawnPoints = new List<GameObject>();
@@ -62,20 +63,24 @@ public class CannonScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        handleReloading();
-        ShootBullet();
+
+        if(!Managers.PlayerManager.Instance.testForLockedControlls())
+        {
+            handleReloading();
+            ShootBullet();
+        }
+
     }
 
 
     void ShootBullet()
     {
-        
+        //Handles holding trigger
         if(player.GetButtonSinglePressHold("ShootGun") && reloading == false)
         {
             shooting = true;
         }
-
-        //Tests for shooting gun
+        //Handles pressing trigger
         if (player.GetButtonDown("ShootGun") && reloading == false)
         {
             shooting = true;

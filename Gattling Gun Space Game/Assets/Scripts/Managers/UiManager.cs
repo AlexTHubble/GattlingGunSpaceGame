@@ -10,14 +10,28 @@ namespace Managers
     {
         TextMeshPro p1Health;
         TextMeshPro p2Health;
+
+        TextMeshPro p1Win;
+        TextMeshPro p2Win;
+        TextMeshPro p1SelfKill;
+        TextMeshPro p2SelfKill;
+
         Text score;
 
         Slider p1Ammo;
         Slider p2Ammo;
 
+        bool player1Reloading = false;
+        bool player2Reloading = false;
+
         // Use this for initialization
         void Start()
         {
+            p1Win = GameObject.Find("P1 WinText TMP").GetComponent<TextMeshPro>();
+            p2Win = GameObject.Find("P2 WinText TMP").GetComponent<TextMeshPro>();
+            p1SelfKill = GameObject.Find("P1 SelfKill TMP").GetComponent<TextMeshPro>();
+            p2SelfKill = GameObject.Find("P2 SelfKill TMP").GetComponent<TextMeshPro>();
+
             p1Ammo = GameObject.Find("ReloadBar P1").GetComponent<Slider>();
             p2Ammo = GameObject.Find("ReloadBar P2").GetComponent<Slider>();
 
@@ -26,6 +40,11 @@ namespace Managers
             //p1Health = GameObject.Find("p1Hp Text").GetComponent<Text>();
             //p2Health = GameObject.Find("p2Hp Text").GetComponent<Text>();
             score = GameObject.Find("Score Text").GetComponent<Text>();
+        }
+
+        private void Update()
+        {
+            //reloadAnimation();
         }
 
         public void updateP1Hp(int hp)
@@ -88,6 +107,7 @@ namespace Managers
             }
         }
 
+        //Initial setup for the ammo bar
         public void setUpAmmoBar(string player, int maxAmmo)
         {
             if(p1Ammo == null || p2Ammo == null)
@@ -105,6 +125,42 @@ namespace Managers
             {
                 p2Ammo.maxValue = maxAmmo;
             }
+        }
+
+        public void displayWinText(string player)
+        {
+            switch(player)
+            {
+                case "P1":
+                    p1Win.GetComponent<MeshRenderer>().enabled = true;
+                    break;
+                case "P2":
+                    p2Win.GetComponent<MeshRenderer>().enabled = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void displaySelfKill(string player)
+        {
+            switch (player)
+            {
+                case "P1":
+                    p1SelfKill.GetComponent<MeshRenderer>().enabled = true;
+                    break;
+                case "P2":
+                    p2SelfKill.GetComponent<MeshRenderer>().enabled = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        //Handles the reload animation
+        void reloadAnimation()
+        {
+
         }
     }
 }

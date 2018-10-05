@@ -42,30 +42,9 @@ namespace Managers
             Managers.UiManager.Instance.updateScore(p1Score, p2Score);
         }
 
-        public void nextLevel(bool p1Victorious, bool p2Victorious, bool p1SelfHit, bool p2SelfHit)
+        public void nextLevel()
         {
-            if (p1Victorious && gameOver == false)
-            {
-                p1Score++;
-                gameOver = true;
-            }
-            if (p1SelfHit && gameOver == false)
-            {
-                p1Score--;
-                gameOver = true;
-            }
-            if (p2Victorious && gameOver == false)
-            {
-                p2Score++;
-                gameOver = true;
-            }
-            if (p2SelfHit && gameOver == false)
-            {
-                p2Score--;
-                gameOver = true;
-            }
-
-            Debug.Log("Current score: " + p1Score + " - " + p2Score);
+            Debug.Log("NEXT LEVEL");
 
             //Loads the next level if no player is victorious
             if (p1Score < scoreToWin && p2Score < scoreToWin)
@@ -93,6 +72,34 @@ namespace Managers
             {
                 SceneManager.LoadScene(menuSceneNames[0]);
             }
+        }
+
+        public void updateScore(bool p1Victorious, bool p2Victorious, bool p1SelfHit, bool p2SelfHit)
+        {
+            if (p1Victorious && gameOver == false)
+            {
+                p1Score++;
+                gameOver = true;
+            }
+            if (p1SelfHit && gameOver == false)
+            {
+                p1Score--;
+                gameOver = true;
+            }
+            if (p2Victorious && gameOver == false)
+            {
+                p2Score++;
+                gameOver = true;
+            }
+            if (p2SelfHit && gameOver == false)
+            {
+                p2Score--;
+                gameOver = true;
+            }
+
+            Debug.Log("Current score: " + p1Score + " - " + p2Score);
+
+           
         }
 
     }
