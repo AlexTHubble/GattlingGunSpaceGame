@@ -42,6 +42,18 @@ namespace Managers
             Managers.UiManager.Instance.updateScore(p1Score, p2Score);
         }
 
+        public void resetScores()
+        {
+            p1Score = 0;
+            p2Score = 0;
+        }
+
+        public void moveToHowToPlay()
+        {
+            Debug.Log("Moving to how to play");
+            SceneManager.LoadScene("HowToPlay");
+        }
+
         public void nextLevel()
         {
             Debug.Log("NEXT LEVEL");
@@ -49,7 +61,7 @@ namespace Managers
             //Loads the next level if no player is victorious
             if (p1Score < scoreToWin && p2Score < scoreToWin)
             {
-                int nextLevelId = Random.Range(0, levelNames.Count - 1);
+                int nextLevelId = Random.Range(0, levelNames.Count);
                 SceneManager.LoadScene(levelNames[nextLevelId]);
             }
 

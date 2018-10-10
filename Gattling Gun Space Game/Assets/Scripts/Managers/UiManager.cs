@@ -24,22 +24,29 @@ namespace Managers
         bool player1Reloading = false;
         bool player2Reloading = false;
 
+        [SerializeField]
+        bool endScene = false;
+
         // Use this for initialization
         void Start()
         {
             p1Win = GameObject.Find("P1 WinText TMP").GetComponent<TextMeshPro>();
             p2Win = GameObject.Find("P2 WinText TMP").GetComponent<TextMeshPro>();
-            p1SelfKill = GameObject.Find("P1 SelfKill TMP").GetComponent<TextMeshPro>();
-            p2SelfKill = GameObject.Find("P2 SelfKill TMP").GetComponent<TextMeshPro>();
-
-            p1Ammo = GameObject.Find("ReloadBar P1").GetComponent<Slider>();
-            p2Ammo = GameObject.Find("ReloadBar P2").GetComponent<Slider>();
-
-            p1Health = GameObject.Find("P1HP TMP").GetComponent<TextMeshPro>();
-            p2Health = GameObject.Find("P2HP TMP").GetComponent<TextMeshPro>();
-            //p1Health = GameObject.Find("p1Hp Text").GetComponent<Text>();
-            //p2Health = GameObject.Find("p2Hp Text").GetComponent<Text>();
             score = GameObject.Find("Score Text").GetComponent<Text>();
+
+            if (!endScene)
+            {
+                p1Ammo = GameObject.Find("ReloadBar P1").GetComponent<Slider>();
+                p2Ammo = GameObject.Find("ReloadBar P2").GetComponent<Slider>();
+
+                p1Health = GameObject.Find("P1HP TMP").GetComponent<TextMeshPro>();
+                p2Health = GameObject.Find("P2HP TMP").GetComponent<TextMeshPro>();
+
+                p1SelfKill = GameObject.Find("P1 SelfKill TMP").GetComponent<TextMeshPro>();
+                p2SelfKill = GameObject.Find("P2 SelfKill TMP").GetComponent<TextMeshPro>();
+            }
+
+
         }
 
         private void Update()
