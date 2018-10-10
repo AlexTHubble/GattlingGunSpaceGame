@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/P1Wins.unity
     guid: 7c09b982aae660a4eb50a986ee974025
+  - enabled: 1
+    path: Assets/Scenes/Level 6.unity
+    guid: 88bea736dbfed8f4980c33a281e18533
+  - enabled: 1
+    path: Assets/Scenes/Level 5.unity
+    guid: 829deef9e870c4e44a530e15148ad94e
   m_configObjects: {}

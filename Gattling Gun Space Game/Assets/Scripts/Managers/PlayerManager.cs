@@ -58,70 +58,77 @@ namespace Managers
 
         public void reducePl1Hp(int hpLoss, bool selfHit)
         {
-            if (!p1GodEnabled)
+            if(!lockControlls)
             {
-                player1Hp -= hpLoss;
-                currentP1God = Time.time + godPeriod;
-                p1GodEnabled = true;
-            }
-
-            Managers.UiManager.Instance.updateP1Hp(player1Hp);
-            Debug.Log("P1 took " + hpLoss + " damage, current hp: " + player1Hp);
-
-            if(player1Hp <= 0)
-            {
-                if(selfHit)
+                if (!p1GodEnabled)
                 {
-                    Managers.SceneManagerScript.Instance.updateScore(false, false, true, false);
-                    gameOverPause = true;
-                    lockControlls = true;
-                    Managers.UiManager.Instance.displaySelfKill("P1");
-                    currentGameOverPauseTime = Time.time + gameOverPauseTime;
+                    player1Hp -= hpLoss;
+                    currentP1God = Time.time + godPeriod;
+                    p1GodEnabled = true;
                 }
-                else
+
+                Managers.UiManager.Instance.updateP1Hp(player1Hp);
+                Debug.Log("P1 took " + hpLoss + " damage, current hp: " + player1Hp);
+
+                if (player1Hp <= 0)
                 {
-                    Managers.SceneManagerScript.Instance.updateScore(false, true, false, false);
-                    gameOverPause = true;
-                    lockControlls = true;
-                    Managers.UiManager.Instance.displayWinText("P2");
-                    currentGameOverPauseTime = Time.time + gameOverPauseTime;
+                    if (selfHit)
+                    {
+                        Managers.SceneManagerScript.Instance.updateScore(false, false, true, false);
+                        gameOverPause = true;
+                        lockControlls = true;
+                        Managers.UiManager.Instance.displaySelfKill("P1");
+                        currentGameOverPauseTime = Time.time + gameOverPauseTime;
+                    }
+                    else
+                    {
+                        Managers.SceneManagerScript.Instance.updateScore(false, true, false, false);
+                        gameOverPause = true;
+                        lockControlls = true;
+                        Managers.UiManager.Instance.displayWinText("P2");
+                        currentGameOverPauseTime = Time.time + gameOverPauseTime;
+                    }
                 }
             }
         }
 
         public void reducePl2Hp(int hpLoss, bool selfHit)
         {
-            if(!p2GodEnabled)
+            if(!lockControlls)
             {
-                player2Hp -= hpLoss;
-                currentP2God = Time.time + godPeriod;
-                p2GodEnabled = true;
-            }
-
-            Managers.UiManager.Instance.updateP2Hp(player2Hp);
-            Debug.Log("P1 took " + hpLoss + " damage, current hp: " + player1Hp);
-
-            if (player2Hp <= 0)
-            {
-                if (selfHit)
+                if (!p2GodEnabled)
                 {
-
-                    Managers.SceneManagerScript.Instance.updateScore(false, false, false, true);
-                    gameOverPause = true;
-                    lockControlls = true;
-                    Managers.UiManager.Instance.displaySelfKill("P2");
-                    currentGameOverPauseTime = Time.time + gameOverPauseTime;  
+                    player2Hp -= hpLoss;
+                    currentP2God = Time.time + godPeriod;
+                    p2GodEnabled = true;
                 }
-                else
-                {
-                    Managers.SceneManagerScript.Instance.updateScore(true, false, false, false);
-                    gameOverPause = true;
-                    lockControlls = true;
-                    Managers.UiManager.Instance.displayWinText("P1");
-                    currentGameOverPauseTime = Time.time + gameOverPauseTime;
 
+                Managers.UiManager.Instance.updateP2Hp(player2Hp);
+                Debug.Log("P1 took " + hpLoss + " damage, current hp: " + player1Hp);
+
+                if (player2Hp <= 0)
+                {
+                    if (selfHit)
+                    {
+
+                        Managers.SceneManagerScript.Instance.updateScore(false, false, false, true);
+                        gameOverPause = true;
+                        lockControlls = true;
+                        Managers.UiManager.Instance.displaySelfKill("P2");
+                        currentGameOverPauseTime = Time.time + gameOverPauseTime;
+                    }
+                    else
+                    {
+                        Managers.SceneManagerScript.Instance.updateScore(true, false, false, false);
+                        gameOverPause = true;
+                        lockControlls = true;
+                        Managers.UiManager.Instance.displayWinText("P1");
+                        currentGameOverPauseTime = Time.time + gameOverPauseTime;
+
+                    }
                 }
             }
+            
         }
 
         public bool testForLockedControlls()
