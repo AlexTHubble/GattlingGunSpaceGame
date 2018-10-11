@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bebc753b6fa45249a4aee7f5f88a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 5
+  bulletSpeed: 7
   maxBounces: 4
   maxVelocity: 100
 --- !u!212 &212951953720467930

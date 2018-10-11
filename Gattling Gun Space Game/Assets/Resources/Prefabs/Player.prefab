@@ -305,7 +305,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1062683407696670}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.96, y: -0.88, z: 0}
+  m_LocalPosition: {x: -15.96, y: 7.49, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224382630218072728}
@@ -436,7 +436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clipSize: 25
-  reloadTime: 1
+  reloadTime: 0.3
 --- !u!114 &114142333841957648
 MonoBehaviour:
   m_ObjectHideFlags: 1

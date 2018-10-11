@@ -75,11 +75,11 @@ public class CannonScript : MonoBehaviour {
 
     void ShootBullet()
     {
-        //Handles holding trigger
-        if(player.GetButtonSinglePressHold("ShootGun") && reloading == false)
-        {
-            shooting = true;
-        }
+        ////Handles holding trigger
+        //if(player.GetButtonSinglePressHold("ShootGun") && reloading == false)
+        //{
+        //    shooting = true;
+        //}
         //Handles pressing trigger
         if (player.GetButtonDown("ShootGun") && reloading == false)
         {
@@ -91,7 +91,7 @@ public class CannonScript : MonoBehaviour {
         }
 
 
-        if (shooting)
+        if (shooting && !reloading)
             if (!delayInititated)
             {
                 //Spawns bullet and reduces clip count
@@ -133,7 +133,7 @@ public class CannonScript : MonoBehaviour {
         if(currentClip <= 0 && reloading == false)
         {
             //Debug.Log("RELOADING");
-            shooting = false;
+            //shooting = false;
             reloading = true;
 
             currentReloadTime = Time.time + reloadTime;
@@ -141,7 +141,7 @@ public class CannonScript : MonoBehaviour {
 
         if(player.GetButtonDown("Reload"))
         {
-            shooting = false;
+            //shooting = false;
             reloading = true;
 
             currentReloadTime = Time.time + reloadTime;
