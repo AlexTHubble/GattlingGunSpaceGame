@@ -185,8 +185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5c22b7760aaadf47bab326e5da841b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHp: 5
-  bulletBounces: 2
+  playerHp: 3
+  bulletBounces: 4
   playerDashCount: 100
   dashCooldown: 0.5
   shootDelay: 0.02

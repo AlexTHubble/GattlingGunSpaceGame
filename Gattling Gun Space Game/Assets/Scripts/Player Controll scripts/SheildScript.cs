@@ -8,6 +8,12 @@ public class SheildScript : MonoBehaviour {
     Player player;
     bool isShooting = false;
     //bool shooting = false;
+    [SerializeField]
+    float sheildDelayPeriod = 0.1f;
+
+    float currentDelayPeriod = 0f;
+    bool isDelayInitiated = false;
+
     PolygonCollider2D collider;
     SpriteRenderer renderer;
 
@@ -40,6 +46,7 @@ public class SheildScript : MonoBehaviour {
     {
         bool isShootingLocked = false;
 
+        //Tests to see if the shooting has been locked
         switch(tag)
         {
             case "P1":
@@ -52,6 +59,7 @@ public class SheildScript : MonoBehaviour {
                 break;
         }
 
+        //Tests to see if the player is holding the shoot button
         if (player.GetButtonDown("ShootGun"))
         {
             isShooting = true;
@@ -61,14 +69,24 @@ public class SheildScript : MonoBehaviour {
             isShooting = false;
         }
 
+        //Handles the dissabling of the sheild
         if(isShooting && !isShootingLocked)
         {
+            isDelayInitiated = true;
+            currentDelayPeriod = Time.time + sheildDelayPeriod;
             disableSheild();
         }
-        else
+        else if(!isDelayInitiated) //If the delay is not initaited, re enable the sheild
         {
             enableSheild();
         }
+
+
+        if (isDelayInitiated && currentDelayPeriod <= Time.time)
+        {
+            isDelayInitiated = false;
+        }
+
     }
 
     void disableSheild()

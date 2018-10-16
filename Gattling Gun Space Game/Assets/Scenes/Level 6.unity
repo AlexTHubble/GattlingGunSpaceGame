@@ -635,6 +635,14 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4913856827728860, guid: 6c37a00589172b84ebc90db80f94a65b, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 4913856827728860, guid: 6c37a00589172b84ebc90db80f94a65b, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c37a00589172b84ebc90db80f94a65b, type: 2}
   m_IsPrefabAsset: 0
@@ -1646,6 +1654,14 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4317171749934766, guid: 962f69ef8cdc81f49b1b07722a98137c, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 4317171749934766, guid: 962f69ef8cdc81f49b1b07722a98137c, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 962f69ef8cdc81f49b1b07722a98137c, type: 2}
   m_IsPrefabAsset: 0
@@ -1848,7 +1864,7 @@ Transform:
   - {fileID: 614236775}
   - {fileID: 79737839}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1072905499
 GameObject:
@@ -2853,12 +2869,12 @@ Prefab:
     - target: {fileID: 114468638115075462, guid: e477544282c41f849a9b3f75ab4565d5,
         type: 2}
       propertyPath: playerHp
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114468638115075462, guid: e477544282c41f849a9b3f75ab4565d5,
         type: 2}
       propertyPath: bulletBounces
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e477544282c41f849a9b3f75ab4565d5, type: 2}
@@ -4000,7 +4016,7 @@ RectTransform:
   m_Children:
   - {fileID: 890192561}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

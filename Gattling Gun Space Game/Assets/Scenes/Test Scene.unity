@@ -893,6 +893,18 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4317171749934766, guid: 962f69ef8cdc81f49b1b07722a98137c, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4317171749934766, guid: 962f69ef8cdc81f49b1b07722a98137c, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4317171749934766, guid: 962f69ef8cdc81f49b1b07722a98137c, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -13.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 962f69ef8cdc81f49b1b07722a98137c, type: 2}
   m_IsPrefabAsset: 0
@@ -1213,12 +1225,12 @@ Prefab:
     - target: {fileID: 114468638115075462, guid: e477544282c41f849a9b3f75ab4565d5,
         type: 2}
       propertyPath: playerHp
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114468638115075462, guid: e477544282c41f849a9b3f75ab4565d5,
         type: 2}
       propertyPath: bulletBounces
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e477544282c41f849a9b3f75ab4565d5, type: 2}
@@ -1315,7 +1327,7 @@ RectTransform:
   m_Children:
   - {fileID: 844374955}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1382,7 +1394,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1652424550
 GameObject:
@@ -1814,7 +1826,7 @@ Transform:
   - {fileID: 1869777237}
   - {fileID: 1900622800}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1900622800
 Transform:
@@ -1883,6 +1895,14 @@ Prefab:
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4913856827728860, guid: 6c37a00589172b84ebc90db80f94a65b, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4913856827728860, guid: 6c37a00589172b84ebc90db80f94a65b, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 12.17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c37a00589172b84ebc90db80f94a65b, type: 2}
