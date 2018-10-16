@@ -51,6 +51,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 649bd0d6cffe435409f5217fd226789a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1Hp: 5
-  player2Hp: 5
-  godPeriod: 0.2
+  godPeriod: 2
+  gameOverPauseTime: 3

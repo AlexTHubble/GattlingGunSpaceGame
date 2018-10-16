@@ -75,12 +75,22 @@ public class CannonScript : MonoBehaviour {
 
     void ShootBullet()
     {
-        ////Handles holding trigger
-        //if(player.GetButtonSinglePressHold("ShootGun") && reloading == false)
-        //{
-        //    shooting = true;
-        //}
-        //Handles pressing trigger
+        bool isShootingLocked = false;
+
+        //Tests to see if the shooting has been locked externaly by the playerManager
+        switch (tag)
+        {
+            case "P1":
+                isShootingLocked = Managers.PlayerManager.Instance.testForP1LockShooting();
+                break;
+            case "P2":
+                isShootingLocked = Managers.PlayerManager.Instance.testForP2LockShooting();
+                break;
+            default:
+                break;
+        }
+
+
         if (player.GetButtonDown("ShootGun") && reloading == false)
         {
             shooting = true;
@@ -91,9 +101,20 @@ public class CannonScript : MonoBehaviour {
         }
 
 
-        if (shooting && !reloading)
+        if (shooting && !reloading && !isShootingLocked)
             if (!delayInititated)
             {
+                //Turns off godmode
+                switch(gameObject.tag)
+                {
+                    case "P1":
+                        Managers.PlayerManager.Instance.setP1GodMode(false);
+                        break;
+                    case "P2":
+                        Managers.PlayerManager.Instance.setP2GodMode(false);
+                        break;
+                }
+
                 //Spawns bullet and reduces clip count
                 Instantiate(bulletPrefab, spawnPoints[currentSpawnPoint].gameObject.transform.position, spawnPoints[currentSpawnPoint].gameObject.transform.rotation);
                 currentClip--;
@@ -160,13 +181,5 @@ public class CannonScript : MonoBehaviour {
         currentClip = clipSize;
         Managers.UiManager.Instance.updateAmmoBar(gameObject.tag, currentClip);
         reloading = false;
-
-        ////While loop used for ammo bar animation effect
-        //while (currentClip <= clipSize)
-        //{
-        //    currentClip++;
-        //    Managers.UiManager.Instance.updateAmmoBar(gameObject.tag, currentClip);
-        //    reloading = false;
-        //}
     }
 }

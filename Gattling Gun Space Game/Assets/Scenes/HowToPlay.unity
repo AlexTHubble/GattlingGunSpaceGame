@@ -1098,10 +1098,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'Hit the yellow circle on your opponant to deal damage, be carefull you
-    can hurt yourself!
+  m_text: 'Shooting will disable your front facing sheild so be carefull when attacking!
 
-    First to 3 kills wins!'
+    First to 3 games win!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b2ec79a33f81c964bab9f99f2380b99d, type: 2}
   m_sharedMaterial: {fileID: 21042212395618244, guid: b2ec79a33f81c964bab9f99f2380b99d,
@@ -1170,10 +1169,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1584310700}
-    characterCount: 112
+    characterCount: 99
     spriteCount: 0
-    spaceCount: 20
-    wordCount: 21
+    spaceCount: 16
+    wordCount: 17
     linkCount: 0
     lineCount: 3
     pageCount: 1

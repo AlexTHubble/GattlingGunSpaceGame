@@ -170,7 +170,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 649bd0d6cffe435409f5217fd226789a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  godPeriod: 0.2
+  godPeriod: 2
+  lockShootTime: 1
+  gameOverPauseTime: 3
+  godModeAlphaValue: 0.5
 --- !u!114 &114468638115075462
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -182,8 +185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5c22b7760aaadf47bab326e5da841b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHp: 2
-  bulletBounces: 10
+  playerHp: 5
+  bulletBounces: 2
   playerDashCount: 100
   dashCooldown: 0.5
   shootDelay: 0.02
@@ -198,6 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db78801f9a4cbd4484fe31799c72c45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  endScene: 0
 --- !u!114 &114721208931039538
 MonoBehaviour:
   m_ObjectHideFlags: 1

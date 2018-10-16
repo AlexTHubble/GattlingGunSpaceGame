@@ -34,6 +34,8 @@ public class BulletScript : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
+
         if(collision.gameObject.tag == "Wall")
         {
             bounceCount++;
@@ -41,30 +43,24 @@ public class BulletScript : MonoBehaviour {
             if (bounceCount > maxBounces)
                 Destroy(gameObject);
         }
-        if (collision.gameObject.tag == "P1")
+        if (collision.gameObject.tag == "P1") //If it hits a player part
         {
-            bounceCount++;
-
-            //if (bounceCount > maxBounces)
-                Destroy(gameObject);
+            Destroy(gameObject);
         }
-        if (collision.gameObject.tag == "P2")
+        if (collision.gameObject.tag == "P2") //If it hits a player part
         {
-            bounceCount++;
-
-            //if (bounceCount > maxBounces)
-                Destroy(gameObject);
+            Destroy(gameObject);
         }
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Player Hit");
             Destroy(gameObject);
         }
     }
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "KillZone")
+        if (collision.tag == "KillZone" || collision.tag == "P1" || collision.tag == "P2")
         {
             Destroy(gameObject);
         }

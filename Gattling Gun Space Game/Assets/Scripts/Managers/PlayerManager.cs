@@ -17,29 +17,71 @@ namespace Managers
         float currentP2God = 0f;
         bool lockControlls = false;
 
+        bool p1LockShooting = false;
+        bool p2LockShooting = false;
+        bool p1LockShootingOver = false;
+        bool p2LockShootingOver = false;
+
+        float p1CurrentLockShootTime = 0f;
+        float p2CurrentLockShootTime = 0f;
+        [SerializeField]
+        float lockShootTime = .5f;
+
         bool gameOverPause = false;
         bool gameOverInitiated = false;
 
         [SerializeField]
         float gameOverPauseTime = 3f;
 
+        [SerializeField]
+        float godModeAlphaValue = 111f;
+        float defaultPlayerAplha;
+
         float currentGameOverPauseTime = 0f;
 
         GameObject player1;
+        SpriteRenderer player1SpriteRenderer;
+        GameObject player1BackSheild;
+        PolygonCollider2D player1BackSheildPolyCollider;
+        SpriteRenderer player1BackSheildSpriteRenderer;
+
         GameObject player2;
+        SpriteRenderer player2SpriteRenderer;
+        GameObject player2BackSheild;
+        PolygonCollider2D player2BackSheildPolyCollider;
+        SpriteRenderer player2BackSheildSpriteRenderer;
 
         private void Start()
         {
+            //Finds player gameobjects
             player1 = GameObject.Find("Player");
             player2 = GameObject.Find("Player 2");
 
+            //Gets the sprite renderers from players
+            player1SpriteRenderer = player1.GetComponent<SpriteRenderer>();
+            player2SpriteRenderer = player2.GetComponent<SpriteRenderer>();
+
+            defaultPlayerAplha = player1SpriteRenderer.color.a;
+
+            //Gets the backSheild from the player gameobjects
+            player1BackSheild = player1.transform.Find("BackSheild").gameObject;
+            player1BackSheildPolyCollider = player1BackSheild.GetComponent<PolygonCollider2D>();
+            player1BackSheildSpriteRenderer = player1BackSheild.GetComponent<SpriteRenderer>();
+
+            player2BackSheild = player2.transform.Find("BackSheild").gameObject;
+            player2BackSheildPolyCollider = player2BackSheild.GetComponent<PolygonCollider2D>();
+            player2BackSheildSpriteRenderer = player2BackSheild.GetComponent<SpriteRenderer>();
+
+            //Sets up the players hp
             player1Hp = Managers.LevelSetupScript.Instance.getPlayerHP();
             player2Hp = Managers.LevelSetupScript.Instance.getPlayerHP();
             Debug.Log("Player 1 health set to: " + player1Hp + " || Player 2 health set to: " + player2Hp);
             Managers.UiManager.Instance.updateP1Hp(player1Hp);
             Managers.UiManager.Instance.updateP2Hp(player2Hp);
 
-           
+            //Color newColor = player1SpriteRenderer.color;
+            //newColor.a = godModeAlphaValue;
+            //player1SpriteRenderer.color = newColor;
         }
 
         private void OnLevelWasLoaded(int level)
@@ -51,7 +93,6 @@ namespace Managers
 
         private void Update()
         {
-            //Debug.Log(lockControlls);
             handleGodPeriod();
             handleGameoverPause();
         }
@@ -131,10 +172,6 @@ namespace Managers
             
         }
 
-        public bool testForLockedControlls()
-        {
-            return lockControlls;
-        }
 
         private void lockPlayerControlls()
         {
@@ -150,16 +187,169 @@ namespace Managers
             }
         }
 
+
+        //Enables godmode effects for player 1
+        private void p1EnableGodModeEffects()
+        {
+            player1BackSheildPolyCollider.enabled = true;
+            player1BackSheildSpriteRenderer.enabled = true;
+
+            //Sets up the lock shooting
+            if (!p1LockShooting && !p1LockShootingOver)
+            {
+                p1LockShooting = true;
+                p1CurrentLockShootTime = Time.time + lockShootTime;
+                Debug.Log("Shooting has been locked for player 1");
+
+                Color newColor = player1SpriteRenderer.color;
+                newColor.a = godModeAlphaValue;
+                player1SpriteRenderer.color = newColor;
+            }
+
+            //If the time has run out for lockedShooting
+            if (p1LockShooting && p1CurrentLockShootTime <= Time.time)
+            {
+                p1LockShootingOver = true;
+                p1LockShooting = false;
+                Debug.Log("Shooting has been unlocked for player1");
+
+                Color newColor = player1SpriteRenderer.color;
+                newColor.a = defaultPlayerAplha;
+                player1SpriteRenderer.color = newColor;
+            }
+        }
+
+        //Enables godmode effects for player 2
+        private void p2EnableGodModeEffects()
+        {
+            player2BackSheildPolyCollider.enabled = true;
+            player2BackSheildSpriteRenderer.enabled = true;
+
+            //Sets up the lock shooting
+            if (!p2LockShooting && !p2LockShootingOver)
+            {
+                p2LockShooting = true;
+                p2CurrentLockShootTime = Time.time + lockShootTime;
+
+                Debug.Log("Shooting has been locked for player 2");
+
+                Color newColor = player2SpriteRenderer.color;
+                newColor.a = godModeAlphaValue;
+                player2SpriteRenderer.color = newColor;
+
+            }
+
+            //If the time has run out for lockedShooting
+            if (p2LockShooting && p2CurrentLockShootTime <= Time.time)
+            {
+                p2LockShootingOver = true;
+                p2LockShooting = false;
+                Debug.Log("Shooting has been unlocked for player2");
+
+                Color newColor = player2SpriteRenderer.color;
+                newColor.a = defaultPlayerAplha;
+                player2SpriteRenderer.color = newColor;
+            }
+
+        }
+
+        //Dissables godmode effects for player 1
+        private void p1DissableGodModeEffects()
+        {
+            player1BackSheildPolyCollider.enabled = false;
+            player1BackSheildSpriteRenderer.enabled = false;
+            p1LockShooting = false;
+            p1LockShootingOver = false;
+
+            //Color newColor = player1SpriteRenderer.color;
+            //newColor.a = defaultPlayerAplha;
+            //player1SpriteRenderer.color = newColor;
+        }
+
+        //Dissables godmode effects  for player 2
+        private void p2DissableGodModeEffects()
+        {
+            player2BackSheildPolyCollider.enabled = false;
+            player2BackSheildSpriteRenderer.enabled = false;
+            p2LockShooting = false;
+            p2LockShootingOver = false;
+
+            //Color newColor = player2SpriteRenderer.color;
+            //newColor.a = defaultPlayerAplha;
+            //player2SpriteRenderer.color = newColor;
+        }
+
+        //Does the every frame checks for handling god period stuff
         private void handleGodPeriod()
         {
-            if(p1GodEnabled && currentP1God <= Time.time)
+
+            //If the time has run out for god mode
+            if (p1GodEnabled && currentP1God <= Time.time)
             {
                 p1GodEnabled = false;
             }
-            if(p2GodEnabled && currentP2God <= Time.time)
+            if (p2GodEnabled && currentP2God <= Time.time)
             {
                 p2GodEnabled = false;
             }
+
+            //If the godmode has been enabled...
+            if (p1GodEnabled)
+            {
+                //Setup back sheild / effects for p1
+                p1EnableGodModeEffects();
+            }
+            if(p2GodEnabled)
+            {
+                //Setup back sheild / effects for p2
+                p2EnableGodModeEffects();
+            }
+
+            //If godmode has been disabled externaly
+            if(!p1GodEnabled)
+            {
+                p1DissableGodModeEffects();
+            }
+            if(!p2GodEnabled)
+            {
+                p2DissableGodModeEffects();
+            }
+        }
+
+        //Setters and getters
+        public bool testForP1GodMode()
+        {
+            return p1GodEnabled;
+        }
+
+        public bool testForP2GodMode()
+        {
+            return p2GodEnabled;
+        }
+
+        public void setP1GodMode(bool godMode)
+        {
+            p1GodEnabled = godMode;
+        }
+
+        public void setP2GodMode(bool godMode)
+        {
+            p2GodEnabled = godMode;
+        }
+
+        public bool testForP1LockShooting()
+        {
+            return p1LockShooting;
+        }
+
+        public bool testForP2LockShooting()
+        {
+            return p2LockShooting;
+        }
+
+        public bool testForLockedControlls()
+        {
+            return lockControlls;
         }
 
     }
