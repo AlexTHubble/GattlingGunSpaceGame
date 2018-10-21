@@ -51,6 +51,11 @@ namespace Managers
         PolygonCollider2D player2BackSheildPolyCollider;
         SpriteRenderer player2BackSheildSpriteRenderer;
 
+        ParticleSystem p1OnHitFX;
+        ParticleSystem p2OnHitFX;
+        ParticleSystem p1OnDeathFX;
+        ParticleSystem p2OnDeathFX;
+
         private void Start()
         {
             //Finds player gameobjects
@@ -79,6 +84,13 @@ namespace Managers
             Managers.UiManager.Instance.updateP1Hp(player1Hp);
             Managers.UiManager.Instance.updateP2Hp(player2Hp);
 
+            //Gets particle fx's 
+            p1OnHitFX = GameObject.Find("Player1 Hit FX").GetComponent<ParticleSystem>();
+            p2OnHitFX = GameObject.Find("Player2 Hit FX").GetComponent<ParticleSystem>();
+
+            p1OnDeathFX = GameObject.Find("Player1 Die FX").GetComponent<ParticleSystem>();
+            p2OnDeathFX = GameObject.Find("Player2 Die FX").GetComponent<ParticleSystem>();
+
             //Color newColor = player1SpriteRenderer.color;
             //newColor.a = godModeAlphaValue;
             //player1SpriteRenderer.color = newColor;
@@ -103,6 +115,8 @@ namespace Managers
             {
                 if (!p1GodEnabled)
                 {
+                    p1OnHitFX.Play();
+
                     player1Hp -= hpLoss;
                     currentP1God = Time.time + godPeriod;
                     p1GodEnabled = true;
@@ -113,6 +127,8 @@ namespace Managers
 
                 if (player1Hp <= 0)
                 {
+                    p1OnDeathFX.Play();
+
                     if (selfHit)
                     {
                         Managers.SceneManagerScript.Instance.updateScore(false, false, true, false);
@@ -139,6 +155,7 @@ namespace Managers
             {
                 if (!p2GodEnabled)
                 {
+                    p2OnHitFX.Play();
                     player2Hp -= hpLoss;
                     currentP2God = Time.time + godPeriod;
                     p2GodEnabled = true;
@@ -149,6 +166,8 @@ namespace Managers
 
                 if (player2Hp <= 0)
                 {
+                    p2OnDeathFX.Play();
+
                     if (selfHit)
                     {
 
@@ -316,7 +335,7 @@ namespace Managers
             }
         }
 
-        //Setters and getters
+        //-----------------------------------------------------------Setters and getters---------------------------------------------------------
         public bool testForP1GodMode()
         {
             return p1GodEnabled;

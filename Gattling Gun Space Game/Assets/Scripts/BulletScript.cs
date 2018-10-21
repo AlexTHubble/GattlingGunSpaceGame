@@ -30,7 +30,9 @@ public class BulletScript : MonoBehaviour {
 	void Update ()
     {
         CheckMaxVelocity();
-	}
+        faceVelocityDirection();
+
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -69,9 +71,18 @@ public class BulletScript : MonoBehaviour {
     //Checks current velocity of the bullet, if it's higher than the max it slow it down
     void CheckMaxVelocity()
     {
-        if(bulletRidgedBody.velocity[1] != maxVelocity)
+        if(bulletRidgedBody.velocity[1] < maxVelocity)
         {
-            //bulletRidgedBody.velocity = new Vector2(0f, maxVelocity);
+            bulletRidgedBody.AddForce(gameObject.transform.forward * bulletSpeed);
         }
+    }
+
+    void faceVelocityDirection()
+    {
+        Vector2 velocity = bulletRidgedBody.velocity;
+
+        float angle = (Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg) - 90;
+
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }

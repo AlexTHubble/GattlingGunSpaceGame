@@ -41,13 +41,13 @@ public class CannonScript : MonoBehaviour {
         switch (tag)
         {
             case "P1":
-                bulletPrefab = Resources.Load("Prefabs/Bullet") as GameObject;
+                bulletPrefab = Resources.Load("Prefabs/BulletP1") as GameObject;
                 player = ReInput.players.GetPlayer("Player1");
                 Debug.Log("Cannon: " + gameObject.name + " has been set to player 1");
 
                 break;
             case "P2":
-                bulletPrefab = Resources.Load("Prefabs/BulletP2") as GameObject;
+                bulletPrefab = Resources.Load("Prefabs/BulletP2 1") as GameObject;
                 player = ReInput.players.GetPlayer("Player0");
                 Debug.Log("Cannon: " + gameObject.name + " has been set to player 0");
                 break;
