@@ -78,6 +78,8 @@ public class PlayerMovementScript : MonoBehaviour
         {
             if (currentDashs < maxDashes)
             {
+                Managers.SoundManagerScript.Instance.playFX("Laser_Shoot");
+
                 Vector3 movment = new Vector3(xDir, yDir, 0f); //Vector with the movment direction
                 playerRidgedBody.AddForce(movment * dashPower); //Adds the force to the player
                 //Debug.Log("Player 2 dashed at " + dashPower + " power in direction " + movment);

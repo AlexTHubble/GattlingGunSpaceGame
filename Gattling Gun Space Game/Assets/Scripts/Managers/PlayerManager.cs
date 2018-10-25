@@ -11,6 +11,14 @@ namespace Managers
         [SerializeField]
         float godPeriod = 0.2f;
 
+        [SerializeField]
+        float timebeforeExplosion = 1f;
+
+        bool explosionInitiated = false;
+        float currentExploadDelay = 0;
+
+        string playerToExpload;
+
         bool p1GodEnabled = false;
         bool p2GodEnabled = false;
         float currentP1God = 0f;
@@ -41,12 +49,14 @@ namespace Managers
 
         GameObject player1;
         SpriteRenderer player1SpriteRenderer;
+        GameObject player1Sheild;
         GameObject player1BackSheild;
         PolygonCollider2D player1BackSheildPolyCollider;
         SpriteRenderer player1BackSheildSpriteRenderer;
 
         GameObject player2;
         SpriteRenderer player2SpriteRenderer;
+        GameObject player2Sheild;
         GameObject player2BackSheild;
         PolygonCollider2D player2BackSheildPolyCollider;
         SpriteRenderer player2BackSheildSpriteRenderer;
@@ -55,6 +65,8 @@ namespace Managers
         ParticleSystem p2OnHitFX;
         ParticleSystem p1OnDeathFX;
         ParticleSystem p2OnDeathFX;
+
+        CameraZoomToPlayerScript cameraHolder;
 
         private void Start()
         {
@@ -77,6 +89,10 @@ namespace Managers
             player2BackSheildPolyCollider = player2BackSheild.GetComponent<PolygonCollider2D>();
             player2BackSheildSpriteRenderer = player2BackSheild.GetComponent<SpriteRenderer>();
 
+            //Gets the sheilds for the players
+            player1Sheild = player1.transform.Find("FrontSheild").gameObject;
+            player2Sheild = player2.transform.Find("FrontSheild").gameObject;
+
             //Sets up the players hp
             player1Hp = Managers.LevelSetupScript.Instance.getPlayerHP();
             player2Hp = Managers.LevelSetupScript.Instance.getPlayerHP();
@@ -91,9 +107,7 @@ namespace Managers
             p1OnDeathFX = GameObject.Find("Player1 Die FX").GetComponent<ParticleSystem>();
             p2OnDeathFX = GameObject.Find("Player2 Die FX").GetComponent<ParticleSystem>();
 
-            //Color newColor = player1SpriteRenderer.color;
-            //newColor.a = godModeAlphaValue;
-            //player1SpriteRenderer.color = newColor;
+            cameraHolder = GameObject.Find("CameraHolder").GetComponent<CameraZoomToPlayerScript>();
         }
 
         private void OnLevelWasLoaded(int level)
@@ -115,6 +129,8 @@ namespace Managers
             {
                 if (!p1GodEnabled)
                 {
+                    Managers.SoundManagerScript.Instance.playRandomBatmanFX();
+
                     p1OnHitFX.Play();
 
                     player1Hp -= hpLoss;
@@ -127,10 +143,17 @@ namespace Managers
 
                 if (player1Hp <= 0)
                 {
-                    p1OnDeathFX.Play();
+                    playerToExpload = "P1";
+                    currentExploadDelay = Time.time + timebeforeExplosion;
+                    explosionInitiated = true;
+
+
+                    //p1OnDeathFX.Play();
 
                     if (selfHit)
                     {
+                        cameraHolder.startMoving(player1.GetComponent<Transform>().position);
+
                         Managers.SceneManagerScript.Instance.updateScore(false, false, true, false);
                         gameOverPause = true;
                         lockControlls = true;
@@ -139,6 +162,8 @@ namespace Managers
                     }
                     else
                     {
+                        cameraHolder.startMoving(player1.GetComponent<Transform>().position);
+
                         Managers.SceneManagerScript.Instance.updateScore(false, true, false, false);
                         gameOverPause = true;
                         lockControlls = true;
@@ -155,6 +180,7 @@ namespace Managers
             {
                 if (!p2GodEnabled)
                 {
+                    Managers.SoundManagerScript.Instance.playRandomBatmanFX();
                     p2OnHitFX.Play();
                     player2Hp -= hpLoss;
                     currentP2God = Time.time + godPeriod;
@@ -166,10 +192,13 @@ namespace Managers
 
                 if (player2Hp <= 0)
                 {
-                    p2OnDeathFX.Play();
+                    playerToExpload = "P2";
+                    currentExploadDelay = Time.time + timebeforeExplosion;
+                    explosionInitiated = true;
 
                     if (selfHit)
                     {
+                        cameraHolder.startMoving(player2.GetComponent<Transform>().position);
 
                         Managers.SceneManagerScript.Instance.updateScore(false, false, false, true);
                         gameOverPause = true;
@@ -179,6 +208,8 @@ namespace Managers
                     }
                     else
                     {
+                        cameraHolder.startMoving(player2.GetComponent<Transform>().position);
+
                         Managers.SceneManagerScript.Instance.updateScore(true, false, false, false);
                         gameOverPause = true;
                         lockControlls = true;
@@ -199,6 +230,29 @@ namespace Managers
 
         private void handleGameoverPause()
         {
+            if(explosionInitiated == true && currentExploadDelay <= Time.time)
+            {
+                explosionInitiated = false;
+                switch(playerToExpload)
+                {
+                    case "P1":
+                        p1OnDeathFX.Play();
+                        disablePlayer1();
+                        //Destroy(player1);
+                        break;
+                    case "P2":
+                        p2OnDeathFX.Play();
+                        disablePlayer2();
+                        //Destroy(player2);
+                        break;
+                    default:
+                        Debug.Log("Error displaying explosion yo");
+                        break;
+                }
+                
+
+            }
+
             if(gameOverPause == true && currentGameOverPauseTime <= Time.time)
             {
                 Managers.SceneManagerScript.Instance.nextLevel();
@@ -280,9 +334,6 @@ namespace Managers
             p1LockShooting = false;
             p1LockShootingOver = false;
 
-            //Color newColor = player1SpriteRenderer.color;
-            //newColor.a = defaultPlayerAplha;
-            //player1SpriteRenderer.color = newColor;
         }
 
         //Dissables godmode effects  for player 2
@@ -293,9 +344,6 @@ namespace Managers
             p2LockShooting = false;
             p2LockShootingOver = false;
 
-            //Color newColor = player2SpriteRenderer.color;
-            //newColor.a = defaultPlayerAplha;
-            //player2SpriteRenderer.color = newColor;
         }
 
         //Does the every frame checks for handling god period stuff
@@ -334,6 +382,46 @@ namespace Managers
                 p2DissableGodModeEffects();
             }
         }
+
+        void disablePlayer1()
+        {
+            player1SpriteRenderer.enabled = false;
+            Component[] spriteRenderes;
+
+            spriteRenderes = player1.GetComponentsInChildren<SpriteRenderer>();
+
+            foreach(SpriteRenderer renderer in spriteRenderes)
+            {
+                renderer.enabled = false;
+            }
+
+            Managers.UiManager.Instance.disableP1Hp();
+
+            Managers.UiManager.Instance.disableP1AmmoBar();
+
+            player1Sheild.SetActive(false);
+            player1BackSheild.SetActive(false);
+        }
+
+        void disablePlayer2()
+        {
+            Component[] spriteRenderes;
+
+            spriteRenderes = player2.GetComponentsInChildren<SpriteRenderer>();
+
+            foreach (SpriteRenderer renderer in spriteRenderes)
+            {
+                renderer.enabled = false;
+            }
+
+            Managers.UiManager.Instance.disableP2Hp();
+
+            Managers.UiManager.Instance.disableP2AmmoBar();
+
+            player2Sheild.SetActive(false);
+            player2BackSheild.SetActive(false);
+        }
+   
 
         //-----------------------------------------------------------Setters and getters---------------------------------------------------------
         public bool testForP1GodMode()

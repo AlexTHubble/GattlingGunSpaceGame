@@ -104,8 +104,10 @@ public class CannonScript : MonoBehaviour {
         if (shooting && !reloading && !isShootingLocked)
             if (!delayInititated)
             {
+                Managers.SoundManagerScript.Instance.playFX("Laser_Shoot3");
+
                 //Turns off godmode
-                switch(gameObject.tag)
+                switch (gameObject.tag)
                 {
                     case "P1":
                         Managers.PlayerManager.Instance.setP1GodMode(false);

@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 
 namespace Managers
 {
-    public class SoundManagerScript : MonoBehaviour
+    public class SoundManagerScript : Singleton<SoundManagerScript>
     {
         [SerializeField]
         List<AudioClip> musicList;
@@ -24,8 +24,16 @@ namespace Managers
         [SerializeField]
         bool startSongOnStart = true;
 
+        [SerializeField]
+        float fxDelay = 0.5f;
+
+        bool delayOver = false;
+        float currentDelayTime = 0f;
+
         private AudioSource music;
         private AudioSource fx;
+        private AudioSource delayedFx;
+        private AudioSource batman;
 
         void Awake()
         {
@@ -51,6 +59,8 @@ namespace Managers
             var audioSources = GetComponents<AudioSource>();
             music = audioSources[0];
             fx = audioSources[1];
+            delayedFx = audioSources[2];
+            batman = audioSources[3];
             music.volume = musicVolume;
         }
 
@@ -66,7 +76,10 @@ namespace Managers
 
         public void playFX(string fxToPlay)
         {
+
             AudioClip newFX = findFX(fxToPlay);
+
+            delayOver = true;
 
             if (newFX != null)
             {
@@ -74,6 +87,7 @@ namespace Managers
                 fx.clip = newFX;
                 fx.Play();
             }
+
         }
 
         public void playFX(string fxToPlay, float volume)
@@ -88,13 +102,70 @@ namespace Managers
             }
         }
 
+        public void playFXWithDelay(string fxToPlay)
+        {
+            if (!delayOver)
+            {
+                AudioClip newFX = findFX(fxToPlay);
+
+                delayOver = true;
+                currentDelayTime = Time.time + fxDelay;
+
+                if (newFX != null)
+                {
+                    delayedFx.volume = 1f;
+                    delayedFx.clip = newFX;
+                    delayedFx.Play();
+                }
+            }
+            else if (currentDelayTime <= Time.time)
+            {
+                delayOver = false;
+            }
+
+        }
+
+        public void playFxWithDelay(string fxToPlay, float volume)
+        {
+
+            if (!delayOver)
+            {
+                AudioClip newFX = findFX(fxToPlay);
+
+                delayOver = true;
+                currentDelayTime = Time.time + fxDelay;
+
+                if (newFX != null)
+                {
+                    delayedFx.volume = volume;
+                    delayedFx.clip = newFX;
+                    delayedFx.Play();
+                }
+            }
+            else if (currentDelayTime <= Time.time)
+            {
+                delayOver = false;
+            }
+        }
+
+
         public void playRandomBatmanFX(float volume)
         {
             int randIndex = Random.Range(0, batManFX.Count);
 
-            fx.volume = volume;
-            fx.clip = batManFX[randIndex];
-            fx.Play();
+            batman.volume = volume;
+            batman.clip = batManFX[randIndex];
+            batman.Play();
+        }
+
+        public void playRandomBatmanFX()
+        {
+            int randIndex = Random.Range(0, batManFX.Count);
+
+            Debug.Log(randIndex);
+
+            batman.clip = batManFX[randIndex];
+            batman.Play();
         }
 
         private AudioClip findSong(string key)
@@ -120,6 +191,8 @@ namespace Managers
             Debug.Log("Invalid FX, " + key + " not found");
             return null;
         }
+
+
     }
 
 }

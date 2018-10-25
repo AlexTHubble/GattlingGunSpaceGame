@@ -54,6 +54,26 @@ namespace Managers
             //reloadAnimation();
         }
 
+        public void disableP1AmmoBar()
+        {
+            GameObject.Find("ReloadBar P1 Canvas").GetComponent<Canvas>().enabled = false;
+        }
+
+        public void disableP2AmmoBar()
+        {
+            GameObject.Find("ReloadBar P2 Canvas").GetComponent<Canvas>().enabled = false;
+        }
+
+        public void disableP1Hp()
+        {
+            p1Health.text = "";
+        }
+
+        public void disableP2Hp()
+        {
+            p2Health.text = "";
+        }
+
         public void updateP1Hp(int hp)
         {
             if(p1Health == null)

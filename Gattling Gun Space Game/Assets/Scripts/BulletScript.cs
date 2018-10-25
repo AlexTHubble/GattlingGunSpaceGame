@@ -44,6 +44,8 @@ public class BulletScript : MonoBehaviour {
 
             if (bounceCount > maxBounces)
                 Destroy(gameObject);
+
+            Managers.SoundManagerScript.Instance.playFXWithDelay("OnHit");
         }
         if (collision.gameObject.tag == "P1") //If it hits a player part
         {
